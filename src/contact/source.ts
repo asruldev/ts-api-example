@@ -1,5 +1,5 @@
 import { ContactRequestModel, ContactResponseModel } from "./model";
-import { ContactDataSourceInterface } from "./data.source.interface";
+import { ContactDataSourceInterface } from "./source.interface";
 
 const DB_TABLE = "db_contact"
 export class ContactDataSource implements ContactDataSourceInterface {
