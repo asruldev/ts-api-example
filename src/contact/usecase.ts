@@ -1,10 +1,11 @@
-import { ContactRequestModel, ContactResponseModel } from "./contact.model";
-import { ContactRepository } from "./contact.repository.interface";
+import { ContactRequestModel, ContactResponseModel } from "./model";
+import { ContactRepository } from "./repository.interface";
 import {
   CreateContactUseCase,
   DeleteContactUseCase,
   GetAllContactsUseCase,
-} from "./contact.usecase.interface";
+  UpdateContactUseCase,
+} from "./usecase.interface";
 
 export class GetAllContacts implements GetAllContactsUseCase {
   contactRepository: ContactRepository;
@@ -37,5 +38,17 @@ export class DeleteContact implements DeleteContactUseCase {
 
   async execute(id: number) {
     await this.contactRepository.deleteContact(id);
+  }
+}
+
+export class UpdateContact implements UpdateContactUseCase {
+  contactRepository: ContactRepository
+  constructor(contactRepository: ContactRepository) {
+      this.contactRepository = contactRepository
+  }
+
+  async execute(id: number, data: ContactRequestModel) {
+      await this.contactRepository.updateContact(id, data)
+
   }
 }

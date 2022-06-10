@@ -1,4 +1,4 @@
-import { ContactRequestModel, ContactResponseModel } from "./contact.model";
+import { ContactRequestModel, ContactResponseModel } from "./model";
 
 export interface GetAllContactsUseCase {
   execute(): Promise<ContactResponseModel[]>;
@@ -10,4 +10,8 @@ export interface CreateContactUseCase {
 
 export interface DeleteContactUseCase {
   execute(id: number): void;
+}
+
+export interface UpdateContactUseCase {
+  execute(id: number, data: Partial<ContactRequestModel>): void;
 }

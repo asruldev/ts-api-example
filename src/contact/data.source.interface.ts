@@ -1,7 +1,7 @@
 import {
   ContactRequestModel,
   ContactResponseModel,
-} from "./contact.model";
+} from "./model";
 
 export interface ContactDataSourceInterface {
   create(contact: ContactRequestModel): void;

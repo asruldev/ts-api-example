@@ -4,12 +4,14 @@ import {
   CreateContactUseCase,
   DeleteContactUseCase,
   GetAllContactsUseCase,
-} from "./contact.usecase.interface";
+  UpdateContactUseCase,
+} from "./usecase.interface";
 
 export default function ContactsRouter(
   getAllContactsUseCase: GetAllContactsUseCase,
   createContactUseCase: CreateContactUseCase,
-  deleateContactUseCase: DeleteContactUseCase
+  deleteContactUseCase: DeleteContactUseCase,
+  updateContactUseCase: UpdateContactUseCase,
 ) {
   const router = express.Router();
 
@@ -35,9 +37,19 @@ export default function ContactsRouter(
 
   router.delete("/:id", async (req: Request, res: Response) => {
     try {
-      await deleateContactUseCase.execute(Number(req.params.id));
+      await deleteContactUseCase.execute(Number(req.params.id));
       res.statusCode = 200;
       res.json({ message: "Deleted" });
+    } catch (error) {
+      res.status(500).send({ message: "Error delete" });
+    }
+  });
+
+  router.patch("/:id", async (req: Request, res: Response) => {
+    try {
+      await updateContactUseCase.execute(Number(req.params.id), req.body);
+      res.statusCode = 200;
+      res.json({ message: "Updated" });
     } catch (error) {
       res.status(500).send({ message: "Error delete" });
     }

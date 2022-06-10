@@ -1,4 +1,4 @@
-import { ContactRequestModel, ContactResponseModel } from "./contact.model";
+import { ContactRequestModel, ContactResponseModel } from "./model";
 
 export interface ContactRepository {
     createContact(contact: ContactRequestModel): void;
