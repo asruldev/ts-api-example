@@ -1,0 +1,4 @@
+node_modules
+*.ah
+lib
+.env
